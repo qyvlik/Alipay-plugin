@@ -4,7 +4,7 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
   	host: '127.0.0.1',
   	user: 'root',
-  	password: '*******',
+  	password: '******',
   	database: 'AliPay',
   	port: '3306'
 });
@@ -29,12 +29,12 @@ router.post('/alipay', function(req, res, next) {
 
 	var nextStep = 0;
 	var billData = JSON.parse(req.body.bill);
-	console.log(billData);
+
 	
 	// 插入数据
 	
 	for(var i =0;i<billData.length;i++){
-		console.log(i);
+
 		(function(i){
 			connection.query("INSERT INTO sofar(id,bill) VALUES ("+ billData[i].id +",'" + billData[i].bill + "');",function (err, rows) {
 				if(err){

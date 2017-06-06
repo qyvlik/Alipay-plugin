@@ -4,27 +4,6 @@
      *     a)60秒刷新
      *     b)数据过滤数据传输到background.js进行转发
     */
-        /*
-            百度模拟点击测试
-            $("#kw").val("afadfafasdf")
-            $("#su").click();
-        */
-       // console.log($(".touclick"))
-       // setTimeout(function(){
-       //      $(".touclick").html("<span id='touclick'>下一步</span>")
-       //      $("#touclick").click();
-       //      console.log("afasfasdf")
-       // },1000)
-       
-        /**
-            支付宝点击测试
-        */
-       // setTimeout(function(){
-       //      console.log($(".page-next"));
-       //      $(".page-next").html("<span id='devSofar'>下一步</span>")
-       //      $("#devSofar").click();
-       //      console.log("test##########")
-       // },3000000)
 
         // 订单详细数据
         var count = $('.J-item');
@@ -76,13 +55,10 @@
                         var date2 =  item.id.substring(4,6);
                         var date3 =  item.id.substring(6,8);
                         item.bill = date1 + "-" + date2 + "-" + date3 + item.bill.substring(2);
-                        // console.log("$$$$$$$$$$$$$$$$");
-                        // console.log(date1,date2,date3);
-                        // console.log(item.bill);
-                        // console.log("$$$$$$$$$$$$$$$$");
+
 
                     }
-                    // item.bill = billContent
+
                     billArr.push(item);
                     item = {};
                 }else{
@@ -100,11 +76,11 @@
 
         // 接收数据返回
         chrome.runtime.onMessage.addListener(function (request, sender, sendResponse){
-            // alert(JSON.stringify(request.cmd))
+
             console.log(JSON.stringify(request.cmd))
             sendResponse({status: "success"});
             if(request.cmd == 1){
-                console.log($(".page-home.page-trigger").html());
+                console.log("60秒后重新加载页面")
                 //存在首页按钮，60秒后点击
                 //不存在首页按钮，60秒后刷新页面
                 if($(".page-home.page-trigger").html()){
@@ -113,14 +89,14 @@
                         console.log("刷新首页")
                         $(".page-home.page-trigger").html("<span id='homeSofar'>首页</span>");
                         $("#homeSofar").click();
-                    },3000);
+                    },60000);
                 }else{
                     setTimeout(function(){
                         location.reload("/"); 
                         console.log("#######");
-                        console.log("首页数据刷新");
+                        console.log("当前页面刷新");
                         console.log("#######");
-                    },3000);
+                    },60000);
                 }
             }else{
                 // 点击下一页
@@ -139,7 +115,7 @@
                         console.log("#######");
                     }
                     
-                },3000)
+                },10000)
             }
         })
 
