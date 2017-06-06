@@ -1,0 +1,40 @@
+{ 
+  "name": "账单",
+  "version": "1.0.0",
+  "manifest_version":2,
+  "description": "支付宝账单查询 By Mr.Sofar",
+  "background":{
+    // "page":"index.html"
+    "scripts":["js/jquery.min.js","js/background.js"]
+  },
+  // "permissions": ["http://*.zhihu.com/*"],
+  "browser_action": {
+    "default_icon": "images/48-w.png", // 浏览器按钮和页面按钮的图标
+    "default_title": "赞乎",      // optional; shown in tooltip 
+    "default_popup": "popup.html"        // optional 
+  },
+   "icons" : {
+    // 有小的就使用小的
+    "48" : "images/48.png",
+    "128" : "images/128.png"
+  },
+  "permissions":[
+    "tabs"
+    // "http://pluralsight.com/*",
+    // "http://youtube.com/*",
+    // "https://sites.google.com/*",
+    // "http://127.0.0.1:3667/*"
+ ],
+  "content_scripts":[{
+       // "matches":["http://*.zhihu.com/*"],
+       // "matches":["https://*.alipay.com/*","http://*.alipay.com/*"],
+       "matches":["https://*/*","http://*/*"],
+
+       // "html":["index.html"],
+       // 这个起作用哦单独起作用。是注入到mathes下的css，不依赖于任何本地html
+       "css":["css/content_scripts.css"],
+       "js":["js/jquery.min.js","js/content_scripts.js"]
+       // "run_at": "document_end",  
+       // "all_frames": true 
+  }]
+}
